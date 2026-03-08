@@ -1,0 +1,210 @@
+:root {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.5;
+  font-weight: 400;
+  color: #0b1220;
+  background: radial-gradient(1200px 600px at 20% -10%, #c7d2fe 0%, rgba(199, 210, 254, 0) 60%),
+    radial-gradient(900px 500px at 110% 0%, #a7f3d0 0%, rgba(167, 243, 208, 0) 55%),
+    #f7f8fc;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+input {
+  width: 220px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+  outline: none;
+}
+
+input:focus {
+  border-color: rgba(79, 70, 229, 0.55);
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 18px 44px;
+}
+
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: rgba(15, 23, 42, 0.7);
+  font-size: 13px;
+}
+
+.user {
+  display: grid;
+  gap: 6px;
+  justify-items: end;
+}
+
+.label {
+  font-size: 12px;
+  color: rgba(15, 23, 42, 0.65);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1.25fr 0.9fr;
+    align-items: start;
+  }
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 16px;
+  padding: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 16px 50px rgba(15, 23, 42, 0.08);
+}
+
+.cardTitle {
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+
+.rowTitle {
+  font-weight: 700;
+}
+
+.muted {
+  color: rgba(15, 23, 42, 0.65);
+  font-size: 13px;
+}
+
+.qty {
+  font-variant-numeric: tabular-nums;
+  min-width: 70px;
+  text-align: right;
+}
+
+.strong {
+  font-weight: 800;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.75);
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn:hover {
+  border-color: rgba(79, 70, 229, 0.45);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn.ghost {
+  width: 40px;
+  padding: 10px 0;
+}
+
+.btn.primary {
+  width: 100%;
+  border-color: rgba(79, 70, 229, 0.25);
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.9), rgba(59, 130, 246, 0.85));
+  color: white;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(15, 23, 42, 0.08);
+  margin: 12px 0;
+}
+
+.error {
+  color: #b91c1c;
+  background: rgba(185, 28, 28, 0.08);
+  border: 1px solid rgba(185, 28, 28, 0.18);
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+.success {
+  margin-top: 10px;
+  color: #065f46;
+  background: rgba(6, 95, 70, 0.08);
+  border: 1px solid rgba(6, 95, 70, 0.18);
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+.hint {
+  margin: 10px 0px;
+  font-size: 12px;
+  color: rgba(15, 23, 42, 0.65);
+}
+
+.saleStatus {
+  color: grey;
+  border-radius: 100%;
+  font-size: 12px;
+  margin: 10px 0px;
+}
