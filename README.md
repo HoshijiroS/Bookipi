@@ -1,8 +1,20 @@
 # Bookipi (Node + React)
 
+## Description
+- This is a simple flash sale platform designed to handle a large number of concurrent requests.
+
+## General Architecture
+- Server is written in Node.js and Express. Express has been selected for built-in rate limiting functionalities.
+- Database is in PostgreSQL to leverage functionalities such as adding constraints to the columns and tables. Constraints added ensure user ID is unique to place an order and only 1 stock per transaction is allowed.
+- Caching is done in Redis for often accessed endpoints such as those to check for flash sale status and stock count.
+- Vite is chosen as the builder for its build speed.
+- React is chosen as the client for its data fetching hooks.
+- Vitest is chosen as the unit test runner for its compatibility with Vite.
+
 ## Requirements
 - Node.js 19+ recommended
 - PostgreSQL (recommended via Docker Desktop)
+- Redis (recommended via Docker Desktop)
 
 ## Run in dev
 ```bash
