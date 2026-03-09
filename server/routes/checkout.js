@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
   const normalized = validateAndNormalizeItems(req.body?.items);
   if (!normalized.ok) return res.status(400).json({ error: normalized.error });
 
-  const priced = priceForItems(normalized.items);
+  const priced = await priceForItems(normalized.items);
   if (!priced.ok) return res.status(400).json({ error: priced.error });
 
   const reserved = await reserveStock(normalized.items);
@@ -34,10 +34,16 @@ router.post("/", async (req, res) => {
         const order = orderInsert.rows[0];
 
         for (const item of normalized.items) {
-          const product = getProduct(item.productId);
+          const product = await getProduct(item.productId);
+
           await client.query(
             "INSERT INTO order_items (order_id, product_id, quantity, price_cents) VALUES ($1, $2, $3, $4)",
             [order.id, item.productId, item.quantity, product.priceCents]
+          );
+
+          await client.query(
+            "UPDATE flash_sale_product SET stock = GREATEST(0, stock - $1) WHERE id = $2",
+            [item.quantity, item.productId]
           );
         }
 
@@ -67,7 +73,7 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "quantity must be 1" });
     }
     return res.status(500).json({ error: "internal_error" });
-  }
+  } 
 });
 
 module.exports = router;

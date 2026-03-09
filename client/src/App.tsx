@@ -3,6 +3,7 @@ import {
   checkout,
   fetchProducts,
   formatMoney,
+  restock,
   type Product,
   fetchFlashSaleConfig,
   updateFlashSaleConfig,
@@ -143,6 +144,24 @@ export default function App() {
       setError(message);
     } finally {
       setCheckingOut(false);
+    }
+  }
+
+  async function onRestock(productId: string) {
+    try {
+      setCheckingOut(true);
+      const products = await restock({ productId });
+      
+      if(products) {
+        setProducts(products);
+      }
+
+      setCheckingOut(false);
+    } catch (e) {
+      const message = e instanceof Error ? e.message : "Restock failed";
+      setError(message);
+      setCheckingOut(false);
+    } finally {
     }
   }
 
@@ -361,12 +380,21 @@ export default function App() {
                     </div>
                   </div>
                   <div className="actions">
+                    {p.stock}
                     <button
                       className="btn primary"
                       onClick={() => onBuyNow(p.id)}
                       disabled={p.stock <= 0 || checkingOut}
                     >
                       Buy now
+                    </button>
+
+                    <button
+                      className="btn primary"
+                      onClick={() => onRestock(p.id)}
+                      disabled={checkingOut}
+                    >
+                      Restock
                     </button>
                   </div>
                 </div>

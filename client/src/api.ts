@@ -82,10 +82,28 @@ export async function updateFlashSaleConfig(params: {
 export async function fetchFlashSaleStatus(): Promise<FlashSaleStatus> {
   const res = await fetch("/api/flash-sale/status");
   const data = (await res.json()) as FlashSaleStatus;
+
   if (!res.ok) {
     throw new Error(`Failed to load flash sale status (${res.status})`);
   }
 
+  return data;
+}
+
+export async function restock(params: {
+  productId: string 
+}): Promise<any> {
+  const res = await fetch("/api/products/restock", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(params)
+  });
+
+  const data = (await res.json()).result.items as Product[];
+
+  if (!res.ok) {
+    throw new Error('Failed to restock product');
+  }
   return data;
 }
 

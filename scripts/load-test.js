@@ -34,7 +34,7 @@ const ENDPOINTS = {
   flashSaleStatus: { method: "GET", path: "/api/flash-sale/status" },
   checkout: { method: "POST", path: "/api/checkout", body: (id) => ({
     userId: `loadtest-${id}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`,
-    items: [{ productId: "p1", quantity: 1 }]
+    items: [{ productId: "1", quantity: 1 }]
   }) }
 };
 
@@ -60,6 +60,7 @@ async function runRequest() {
   const url = BASE_URL + req.path;
   const start = performance.now();
   let status = 0;
+
   try {
     const res = await fetch(url, {
       method: req.method,
