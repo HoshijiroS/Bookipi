@@ -5,15 +5,23 @@
     "server",
     "client"
   ],
+  "engines": {
+    "node": ">=19.0.0"
+  },
   "scripts": {
     "dev": "concurrently \"npm run dev -w server\" \"npm run dev -w client\"",
     "dev:server": "npm run dev -w server",
     "dev:client": "npm run dev -w client",
     "start": "npm run start -w server",
-    "build": "npm run build -w client"
+    "build": "npm run build -w client",
+    "load-test": "node scripts/load-test.js",
+    "load-test:heavy": "node scripts/load-test.js 50 60",
+    "stress-test": "node scripts/stress-test.js"
   },
   "devDependencies": {
-    "concurrently": "^9.0.0"
+    "concurrently": "^9.0.0",
+    "jest": "^30.2.0"
+  },
+  "dependencies": {
   }
 }
-
